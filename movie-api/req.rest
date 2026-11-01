@@ -1,0 +1,28 @@
+
+GET http://localhost:3000/movies
+Content-Type: application/json
+
+###Get 1 movie
+GET http://localhost:3000/movies/1
+Content-Type: application/json
+
+###Add 1 movie
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Blade Runner",
+  "director": "Ridley Scott",
+  "year": 1982
+}
+
+###
+PATCH http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "year": 2011
+}
+
+// Delete a movie
+DELETE http://localhost:3000/movies/1
