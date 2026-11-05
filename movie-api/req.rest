@@ -3,7 +3,7 @@ GET http://localhost:3000/movies
 Content-Type: application/json
 
 ###Get 1 movie
-GET http://localhost:3000/movies/1
+GET http://localhost:3000/movies/5
 Content-Type: application/json
 
 ###Add 1 movie
@@ -16,7 +16,27 @@ Content-Type: application/json
   "year": 1982
 }
 
-###
+### Test DELETE - Successful (204 No Content)
+DELETE http://localhost:3000/movies/1
+
+### Test DELETE - Non-existent ID (404 Not Found)
+DELETE http://localhost:3000/movies/1
+
+### Verify Deletion - Check Movies List (200 OK)
+DELETE http://localhost:3000/movies/1
+
+
+### 2. Test PUT
+PUT http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "title": "Inception: Updated Edition",
+  "year": 2010,
+  "genre": "Sci-Fi"
+}
+
+### 1. Test PATCH - Successful Update (200 OK)
 PATCH http://localhost:3000/movies/1
 Content-Type: application/json
 
@@ -24,5 +44,36 @@ Content-Type: application/json
   "year": 2011
 }
 
-// Delete a movie
-DELETE http://localhost:3000/movies/1
+### 2. Test PATCH - Multiple Properties (200 OK) 
+PATCH http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "title": "Inception Extended",
+  "genre": "Sci-Fi / Thriller"
+}
+
+
+### 3. Test PATCH - Invalid Year Data Type (400 Bad Request)
+PATCH http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "year": "2011"
+}
+
+### 4. Test PATCH - Invalid Empty Title (400 Bad Request)
+PATCH http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "title": "  "
+}
+
+### 5. Test PATCH - Non-existent ID (404 Not Found)
+PATCH http://localhost:3000/movies/999
+Content-Type: application/json
+
+{
+  "year": 2025
+}
